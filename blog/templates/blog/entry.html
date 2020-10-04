@@ -1,0 +1,11 @@
+<h2>{{ entry.headline }}</h2>
+<p><a href="../../{{entry.blog.id}}">{{entry.blog}}</a></p>
+<h3>{{ entry.body_text }}</h3>
+<br>
+<p>Published Date: {{entry.pub_date}}</p>
+<p>Author:
+    {% for authors in entry.authors.all %}
+        {{authors}}
+    {% endfor %}</p>
+<p>Comments: {{entry.number_of_comments}}</p>
+<p>Ratings: {{entry.rating}}</p>

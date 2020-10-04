@@ -1,0 +1,24 @@
+<h1>{{ blog.name }}</h1>
+<h2>{{ blog.tagline  }}</h2>
+
+{% if blog.entry_set %}
+    <ul>
+    {% for entry in blog.entry_set.all %}
+        <li>
+<!--            <h2>{{ entry.blog }}</h2>-->
+            <a href="/blog/entry/{{ entry.id }}/"><h2>{{ entry.headline }}</h2></a>
+<!--            <h3>{{ entry.body_text }}</h3>-->
+            <p>Published Date: {{entry.pub_date}}</p>
+            <p>Author:
+                {% for authors in entry.authors.all %}
+                    {{authors}}
+                {% endfor %}</p>
+            <p>Comments: {{entry.number_of_comments}}</p>
+            <p>Ratings: {{entry.rating}}</p>
+            <br>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No entries are available.</p>
+{% endif %}

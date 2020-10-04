@@ -1,0 +1,9 @@
+{% if latest_blog_list %}
+    <ul>
+    {% for blog in latest_blog_list %}
+        <li><h3><a href="/blog/{{ blog.id }}/">{{ blog.name }}</a></h3></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No blogs are available.</p>
+{% endif %}
