@@ -10,4 +10,5 @@ urlpatterns = [
     path('entry/<int:pk>/', views.EntryView.as_view(), name = 'entry'),
     path('create_blog/', views.get_blog, name = 'get_blog'),
     path('saved/', views.saved, name = 'saved'),
+    path('register/', views.register, name='register'),
 ]
