@@ -2,6 +2,7 @@
     <h2>You name is: {{ user.username }}</h2>
 {% else %}
     <h2>You are not logged in.</h2>
+    <a href="accounts/login"><p>Click here to log in</p></a>
 {% endif %}
 
 
@@ -14,3 +15,5 @@
 {% else %}
     <p>No blogs are available.</p>
 {% endif %}
+
+<a href="create_blog/"><p>Create Blog</p></a>

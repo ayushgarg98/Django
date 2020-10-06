@@ -1,3 +1,11 @@
+{% if user.is_authenticated %}
+    <h2>You name is: {{ user.username }}</h2>
+{% else %}
+    <h2>You are not logged in.</h2>
+    <a href="../accounts/login"><p>Click here to log in</p></a>
+{% endif %}
+
+
 <h1>{{ blog.name }}</h1>
 <h2>{{ blog.tagline  }}</h2>
 
@@ -22,3 +30,12 @@
 {% else %}
     <p>No entries are available.</p>
 {% endif %}
+
+{% if user.is_authenticated %}
+    <a href="accounts/login"><p>Create an entry</p></a>
+{% else %}
+    <h2>You are not logged in.</h2>
+    <a href="accounts/login"><p>log in to create an entry</p></a>
+{% endif %}
+
+

@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 
 from django.views import generic
 from .models import Blog, Author, Entry
-from .form import BlogForm
+from .form import BlogForm, SignUpForm, AuthorForm, EntryForm
 
 # Create your views here.
 
@@ -46,6 +46,41 @@ def get_blog(request):
     return render(request, 'blog/blog_form.html', {'form': form})
 
 
+def get_author(request):
+    user = request.user
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            # print(form.cleaned_data['name'])
+            # print(form.cleaned_data['tagline'])
+            form.save()
+            # form = BlogForm
+            return HttpResponseRedirect('../')
+    else:
+        form = AuthorForm()
+
+    return render(request, 'blog/author_form.html', {'form': form})
+
+
+def get_entry(request):
+    user = request.user
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        form = EntryForm(request.POST)
+        if form.is_valid():
+            # print(form.cleaned_data['name'])
+            # print(form.cleaned_data['tagline'])
+            form.save()
+            # form = BlogForm
+            return HttpResponseRedirect('../')
+    else:
+        form = EntryForm()
+
+    return render(request, 'blog/entry_form.html', {'form': form})
+
+
+
 def saved(request):
     template = loader.get_template("blog/blog.html")
     return HttpResponse(template.render())
@@ -53,7 +88,7 @@ def saved(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
 
         if form.is_valid():
             form.save()
@@ -63,7 +98,7 @@ def register(request):
             login(request, user)
             return redirect('../')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
 
     context = {'form' : form}
     return render(request, 'registration/register.html', context)
